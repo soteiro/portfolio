@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  
+  --color-page: oklch(0.86 0.06 178);      /* #b2d8d8 - Fondo de página/sección */
+  --color-card: oklch(0.75 0.10 178);      /* #66b2b2 - Cards, componentes elevados */
+  
+  --color-primary: oklch(0.58 0.14 178);      /* #008080 - Color principal */
+  --color-primary-hover: oklch(0.48 0.13 178); /* #006666 - Hover states */
+  
+  --color-text-strong: oklch(0.38 0.12 178);  /* #004c4c - Texto principal */
+}
