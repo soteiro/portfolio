@@ -1,5 +1,4 @@
 ---
-
 import "@styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import Sidebar from "@/components/Sidebar.astro";
@@ -7,19 +6,18 @@ import Sidebar from "@/components/Sidebar.astro";
 
 <!doctype html>
 <html lang="es" transition:name="root" transition:animate="fade">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<ClientRouter />
-		<title>Astro Basics</title>
-		
-	</head>
-	<body class= "bg-primary text-gray-900 dark:text-white m-0 p-0 box-border">
-		<Sidebar />
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <ClientRouter />
+    <title>Soteiro | Front-End Developer</title>
+  </head>
+  <body class="bg-primary text-gray-900 dark:text-white m-0 p-0 box-border">
+        <Sidebar />
+      <main class="ml-52">
+        <slot />
+      </main>
+  </body>
 </html>
-
-
