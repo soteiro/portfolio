@@ -5,19 +5,55 @@ import Sidebar from "@/components/Sidebar.astro";
 ---
 
 <!doctype html>
-<html lang="es" transition:name="root" transition:animate="fade">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <ClientRouter />
     <title>Soteiro | Front-End Developer</title>
   </head>
   <body class="bg-primary text-gray-900 dark:text-white m-0 p-0 box-border">
+        <!-- Botón Hamburguesa -->
+    <button id="menu-toggle" class="fixed top-4 left-4 z-30 p-2 bg-zinc-800 rounded-md md:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
         <Sidebar />
-      <main class="ml-52">
+      <main class="md:ml-52">
         <slot />
       </main>
   </body>
 </html>
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+<script>
+
+  document.addEventListener('astro:page-load', () => {
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.querySelector('#sidebar'); 
+
+    if (menuToggle && sidebar) {
+      const sidebarLinks = sidebar.querySelectorAll('a');
+      
+      menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('-translate-x-full');
+      });
+
+      sidebarLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth < 768) { 
+            sidebar.classList.add('-translate-x-full');
+          }
+        });
+      });
+    }
+  });
+</script>
