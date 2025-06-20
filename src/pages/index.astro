@@ -13,26 +13,25 @@ import Layout from "../layouts/Layout.astro";
         <p class="text-3xl sm:text-4xl md:text-6xl mt-4 text-gray-400">
           Web Developer
         </p>
-        <p class="mt-6 max-w-xl text-base md:text-lg">
-          Desarrollador Front-End apasionado por crear experiencias de usuario
+        <p class="mt-6 max-w-xl text-base md:text-lg text-gray-300">
+          Desarrollador Front-End autodidacta, fascinado por crear aplicaciones e interfaces
           modernas y atractivas.
         </p>
       </div>
       
       <!-- anchor contact -->
-
       <a
-        class="contact-button w-40 h-10 flex justify-center items-center border  border-secondary ml-0 md:ml-5 text-lg md:text-xl text-secondary  rounded-lg font-semibold"
+        class="contact-button w-40 h-10 flex justify-center items-center border-2 border-secondary ml-0 md:ml-5 text-lg md:text-xl text-secondary rounded-lg font-semibold"
         href="#contacto">Contáctame</a
       >
     </section>
 
     <!-- sobre mi -->
-    <section id="sobre-mi" class="py-10 md:py-24">
+    <section id="sobre-mi" class="py-10 md:py-20">
       <h2 class="text-3xl md:text-4xl font-bold mb-8">Sobre mí</h2>
       <p class="text-gray-400 max-w-3xl">
-        Soy un desarrollador web con experiencia en la creación de sitios web y
-        aplicaciones. Me especializo en tecnologías modernas como Astro, React y
+        Soy Diego Ignacio Soto, desarrollador web con experiencia en la creación de sitios web y
+        aplicaciones. Me tengo experiencia en tecnologías modernas como Astro, React y
         Tailwind CSS. Siempre estoy aprendiendo de forma autodidacta y buscando
         nuevos desafíos para mejorar mis habilidades.
       </p>
@@ -40,22 +39,23 @@ import Layout from "../layouts/Layout.astro";
 
     <section
       id="skills"
-      class="py-16 md:py-24 bg-zinc-900 -mx-6 md:-mx-12 lg:-mx-16 px-6 md:px-12 lg:px-16"
+      class="py-16 md:py-20 bg-zinc-900 -mx-6 md:-mx-12 lg:-mx-16 px-6 md:px-12 lg:px-16"
     >
-      <h2 class="text-3xl md:text-4xl font-bold mb-8">My Skills</h2>
+      <h2 class="text-3xl md:text-4xl font-bold mb-8">Mi Stack</h2>
       <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-        <li class="bg-zinc-800 p-4 rounded-lg text-center">JavaScript</li>
-        <li class="bg-zinc-800 p-4 rounded-lg text-center">TypeScript</li>
-        <li class="bg-zinc-800 p-4 rounded-lg text-center">Astro</li>
-        <li class="bg-zinc-800 p-4 rounded-lg text-center">React</li>
-        <li class="bg-zinc-800 p-4 rounded-lg text-center">Tailwind CSS</li>
-        <li class="bg-zinc-800 p-4 rounded-lg text-center">Node.js</li>
-        <li class="bg-zinc-800 p-4 rounded-lg text-center">Git & GitHub</li>
+        <li class="bg-zinc-800 p-4 rounded-lg text-center font-semibold">JavaScript</li>
+        <li class="bg-zinc-800 p-4 rounded-lg text-center font-semibold">TypeScript</li>
+        <li class="bg-zinc-800 p-4 rounded-lg text-center font-semibold">Astro</li>
+        <li class="bg-zinc-800 p-4 rounded-lg text-center font-semibold">React</li>
+        <li class="bg-zinc-800 p-4 rounded-lg text-center font-semibold">Tailwind CSS</li>
+        <li class="bg-zinc-800 p-4 rounded-lg text-center font-semibold">Node.js</li>
+        <li class="bg-zinc-800 p-4 rounded-lg text-center font-semibold">Git & GitHub</li>
       </ul>
     </section>
 
-    <section id="trabajos" class="py-16 md:py-24">
-      <h2 class="text-3xl md:text-4xl font-bold mb-8">Trabajos</h2>
+    <!-- sección proyectos -->
+    <section id="proyectos" class="py-16 md:py-20">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8">Proyectos</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="bg-zinc-800 rounded-lg p-6">
           <h3 class="text-xl md:text-2xl font-bold mb-2">Proyecto 1</h3>
@@ -74,9 +74,10 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </section>
 
+    <!-- sección Blog -->
     <section
       id="blog"
-      class="py-16 md:py-24 bg-zinc-900 -mx-6 md:-mx-12 lg:-mx-16 px-6 md:px-12 lg:px-16"
+      class="py-16 md:py-20 bg-zinc-900 -mx-6 md:-mx-12 lg:-mx-16 px-6 md:px-12 lg:px-16"
     >
       <h2 class="text-3xl md:text-4xl font-bold mb-8">Blog</h2>
       <p class="text-gray-400">
@@ -84,7 +85,7 @@ import Layout from "../layouts/Layout.astro";
       </p>
     </section>
 
-    <section id="contacto" class="py-16 md:py-24">
+    <section id="contacto" class="py-16 md:py-20">
       <h2 class="text-3xl md:text-4xl font-bold mb-8">Contacto</h2>
       <p class="text-gray-400">
         Puedes encontrarme en LinkedIn o revisar mis proyectos en GitHub.
@@ -94,7 +95,7 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <style>
-  /* Estilos botón contacto  */
+  /* botón contacto  */
   .contact-button {
     position: relative;
     overflow: hidden;
@@ -108,9 +109,7 @@ import Layout from "../layouts/Layout.astro";
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(
-      --color-secondary
-    ); /* Usando la variable de color de Tailwind */
+    background-color: var(--color-secondary);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease-in-out;
@@ -118,7 +117,7 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .contact-button:hover {
-    color: #18181b; /* Color del texto en hover (zinc-900) */
+    color: #18181b; /* zinc-900 */
   }
 
   .contact-button:hover::after {
