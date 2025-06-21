@@ -1,0 +1,107 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  robots?: string;
+}
+
+const {
+  title = "Diego Ignacio Soto | Desarrollador Frontend - Portfolio",
+  description = "Desarrollador Frontend especializado en React, Astro, TypeScript y Tailwind CSS. Creando experiencias web modernas y atractivas.",
+  canonical = "https://portfolio4432.netlify.app/",
+  ogImage = "/assets/og-image.jpg",
+  ogType = "website",
+  robots = "index, follow"
+} = Astro.props;
+
+// Generar structured data dinámicamente
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://portfolio.netlify.app/#person",
+      "name": "Diego Ignacio Soto",
+      "alternateName": "Soteiro",
+      "url": "https://diegosoteiro.dev",
+      "image": {
+        "@type": "ImageObject",
+        "url": "/assets/profile-image.jpg",
+        "width": 400,
+        "height": 400
+      },
+      "sameAs": [
+        "https://github.com/soteiro",
+        "https://linkedin.com/in/diegosoteiro"
+      ],
+      "jobTitle": "Desarrollador Frontend",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Freelance"
+      },
+      "knowsAbout": [
+        "JavaScript",
+        "TypeScript", 
+        "React",
+        "Astro",
+        "Tailwind CSS",
+        "Frontend Development",
+        "Web Development",
+        "UI/UX Design"
+      ],
+      "description": description
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://portfolio.netlify.app//#website",
+      "url": "https://portfolio.netlify.app/",
+      "name": "Diego Ignacio Portfolio",
+      "description": description,
+      "publisher": {
+        "@id": "https://portfolio.netlify.app/#person"
+      },
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "WebPage",
+      "@id": canonical + "#webpage",
+      "url": canonical,
+      "name": title,
+      "description": description,
+      "isPartOf": {
+        "@id": "https://portfolio.netlify.app/#website"
+      },
+      "about": {
+        "@id": "https://portfolio.netlify.app/#person"
+      },
+      "datePublished": "2025-06-21",
+      "dateModified": new Date().toISOString().split('T')[0],
+      "inLanguage": "es-ES"
+    }
+  ]
+};
+---
+
+<!-- Dynamic SEO Meta Tags -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={robots} />
+<link rel="canonical" href={canonical} />
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:type" content={ogType} />
+
+<!-- Twitter -->
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<!-- Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
