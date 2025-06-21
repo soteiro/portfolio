@@ -1,0 +1,75 @@
+<!--sección contacto  -->
+	<section id="contacto" class="py-12 md:py-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Contacto</h2>
+      <div class="max-w-xl">
+        <p class="text-gray-400 mb-8">
+			¿Tienes alguna pregunta, comentario o simplemente quieres saludarme? ¡Completa el formulario y te responderé lo antes posible!
+        </p>
+        
+        <form id="contactForm" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="name" class="block text-sm font-medium mb-1">Nombre <span class="text-secondary">*</span></label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required 
+                class="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent transition-colors text-white placeholder-gray-400"
+                placeholder="Tu nombre"
+              >
+            </div>
+            
+            <div>
+              <label for="email" class="block text-sm font-medium mb-1">Email <span class="text-secondary">*</span></label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required 
+                class="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent transition-colors text-white placeholder-gray-400"
+                placeholder="tu@email.com"
+              >
+            </div>
+          </div>
+          
+          <div>
+            <label for="subject" class="block text-sm font-medium mb-1">Asunto <span class="text-secondary">*</span></label>
+            <input 
+              type="text" 
+              id="subject" 
+              name="subject" 
+              required 
+              class="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent transition-colors text-white placeholder-gray-400"
+              placeholder="¿En qué puedo ayudarte?"
+            >
+          </div>
+          
+          <div>
+            <label for="message" class="block text-sm font-medium mb-1">Mensaje <span class="text-secondary">*</span></label>
+            <textarea 
+              id="message" 
+              name="message" 
+              rows="4" 
+              required 
+              class="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent transition-colors text-white placeholder-gray-400 resize-none"
+              placeholder="Cuéntame..."
+            ></textarea>
+          </div>
+          
+          <button 
+            type="submit" 
+            id="submitBtn"
+            class="w-full bg-secondary text-zinc-900 py-2.5 px-6 rounded-md font-semibold hover:bg-opacity-90 transition-all duration-300"
+          >
+            Enviar
+          </button>
+        </form>
+        
+        <!-- Mensaje de respuesta -->
+        <div id="responseMessage" class="mt-4 p-3 rounded-md text-center hidden text-sm">
+        </div>
+         
+        </div>
+      </div>
+    </section>
