@@ -2,16 +2,66 @@
 import "@styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import Sidebar from "@/components/Sidebar.astro";
+import SEO from "@/components/SEO.astro";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const { title, description, canonical, ogImage } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="dark">
-  <head>
+<html lang="es" class="dark">  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Dynamic SEO Component -->
+    <SEO 
+      title={title}
+      description={description}
+      canonical={canonical}
+      ogImage={ogImage}
+    />
+    
+    <!-- Static SEO Meta Tags -->
+    <meta name="keywords" content="desarrollador frontend, react, astro, typescript, javascript, tailwind css, portfolio, diseño web, ui/ux, desarrollo web" />
+    <meta name="author" content="Diego Ignacio Soto" />
+    <meta name="language" content="Spanish" />
+    
+    <!-- Open Graph Static -->
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Diego Ignacio Soto Portfolio" />
+    
+    <!-- Twitter Static -->
+    <meta property="twitter:card" content="summary_large_image" />
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#00d9ff" />
+    <meta name="msapplication-TileColor" content="#0f0f23" />
+    <meta name="application-name" content="Diego Ignacio Soto Portfolio" />
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- Preconnect to improve performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 
     <ClientRouter />
-    <title>Soteiro | Front-End Developer</title>
     
     <!-- EmailJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
