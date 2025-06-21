@@ -1,7 +1,7 @@
 <!-- inicio -->
 <section id="inicio" class="flex flex-col justify-center mt-12 sm:mt-8 md:mt-0 lg:mt-6 ">
   <div class="mb-6">
-    <h1 class="title-line-1 text-4xl sm:text-5xl md:text-6xl font-bold opacity-0 transform translate-y-10">Hola,</h1>
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold">Hola,</h1>
     <h1 class="title-line-2 text-4xl sm:text-5xl md:text-6xl font-bold opacity-0 transform translate-y-10">Soy Diego,</h1>
     <p class="subtitle text-3xl sm:text-4xl md:text-6xl mt-3 text-gray-400 opacity-0 transform translate-y-10">
       Web Developer
@@ -55,13 +55,7 @@
   const tl = gsap.timeline({ delay: 0.8 });
 
   // Animar cada elemento en secuencia
-  tl.to(".title-line-1", {
-    opacity: 1,
-    y: 0,
-    duration: 0.9,
-    ease: "power3.out"
-  })
-  .to(".title-line-2", {
+  tl.to(".title-line-2", {
     opacity: 1,
     y: 0,
     duration: 0.9,
@@ -78,13 +72,8 @@
     y: 0,
     duration: 0.9,
     ease: "power3.out"
-  }, "-=0.3")
-  .to(".contact-button", {
-    opacity: 1,
-    y: 0,
-    duration: 0.9,
-    ease: "power3.out"
-  }, "-=0.2")
+  }, "-=0.3");
+ 
  
 
 </script>
