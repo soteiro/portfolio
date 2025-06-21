@@ -102,4 +102,5 @@
 - [ ] Implementar Service Worker para PWA
 - [ ] Agregar más contenido/blog para long-tail keywords
 - [ ] Implementar schema para proyectos específicos
+- [ ] investigar de forma atenta los cambios que genero la ai.
 
