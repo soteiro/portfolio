@@ -1,10 +1,38 @@
- <!-- sobre mi -->
-    <section id="sobre-mi" class="py-8 md:py-12">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6">Sobre mí</h2>
-      <p class="text-gray-400 max-w-3xl">
-        Soy Diego Ignacio Soto, desarrollador web con experiencia en la creación de sitios web y
-        aplicaciones. Me tengo experiencia en tecnologías modernas como Astro, React y
-        Tailwind CSS. Siempre estoy aprendiendo de forma autodidacta y buscando
-        nuevos desafíos para mejorar mis habilidades.
-      </p>
-    </section>
+<!-- sobre mi -->
+<section id="sobre-mi" class="py-8 md:py-12">
+  <h2 class="about-h2 text-3xl md:text-4xl font-bold mb-6 opacity-0 translate-y-8">Sobre mí</h2>
+  <p class="about-p text-gray-400 max-w-3xl opacity-0 translate-y-8">
+    Soy Diego Ignacio Soto, desarrollador web con experiencia en la creación de sitios web y
+    aplicaciones. Me tengo experiencia en tecnologías modernas como Astro, React y
+    Tailwind CSS. Siempre estoy aprendiendo de forma autodidacta y buscando
+    nuevos desafíos para mejorar mis habilidades.
+  </p>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+
+  document.addEventListener('astro:page-load', () => {
+    // Establecer estado inicial
+    gsap.set([".about-h2", ".about-p"], {
+      opacity: 0,
+      y: 50
+    });
+
+    // Crear timeline con delay
+    const tl = gsap.timeline({ delay: 2.4 });
+
+    tl.to(".about-h2", {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power3.out",
+    })
+    .to(".about-p", {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power3.out",
+    }, "-=0.5");
+  });
+</script>
