@@ -23,9 +23,4 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto',
   },
-  
-  // Configuración para mejor SEO
-  experimental: {
-    contentCollectionCache: true,
-  }
 });
