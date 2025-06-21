@@ -1,4 +1,4 @@
-# SEO Optimizations - Portfolio Diego Soteiro
+# SEO Optimizations Creados por AI- Portfolio Diego Ignacio Soto
 
 ## 📈 Implementaciones de SEO
 
@@ -102,3 +102,4 @@
 - [ ] Implementar Service Worker para PWA
 - [ ] Agregar más contenido/blog para long-tail keywords
 - [ ] Implementar schema para proyectos específicos
+
