@@ -9,6 +9,7 @@ import Sidebar from "@/components/Sidebar.astro";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     <ClientRouter />
     <title>Soteiro | Front-End Developer</title>
     
@@ -35,12 +36,12 @@ import Sidebar from "@/components/Sidebar.astro";
     color-scheme: dark only;
   }
   
-  /* Forzar tema oscuro globalmente */
+  /* Forzar tema oscuro  */
   * {
     color-scheme: dark;
   }
   
-  /* Evitar que el sistema override los colores */
+  /* Evitar que el sistema override los colores  por ai*/
   html, body {
     background-color: #18181b !important;
     color: #ffffff !important;
