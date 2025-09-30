@@ -1,10 +1,17 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
+
+import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://astrofy-template.netlify.app',
-  integrations: [mdx(), sitemap(), tailwind()]
+  vite:{
+    plugins: [tailwindcss()]
+  },
+
+  integrations: [mdx(), sitemap()],
+  adapter: netlify(),
+  output: 'server'
 });

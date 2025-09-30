@@ -1,11 +1,12 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
-import { ViewTransitions } from "astro:transitions";
+import '@styles/global.css';
 
-import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 
 const {
   image,
@@ -18,10 +19,10 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" data-theme="lofi">
+<html lang="es" data-theme="night">
   <head>
     <BaseHead title={title} description={description} image={image} , ogType={ogType} />
-    {TRANSITION_API && <ViewTransitions />}
+    <ClientRouter />
   </head>
   <body>
     <div class="bg-base-100 drawer lg:drawer-open">
