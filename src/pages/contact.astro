@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout sideBarActiveItemID="contact">
+  <section class="max-w-xl mx-auto py-8">
+    <h1 class="text-3xl font-bold mb-4">Contacto</h1>
+    <form name="contact" method="POST" data-netlify="true" class="flex flex-col gap-4">
+      <input type="hidden" name="form-name" value="contact" />
+      <label>
+        Nombre:
+        <input type="text" name="name" required class="input input-bordered w-full" />
+      </label>
+      <label>
+        Email:
+        <input type="email" name="email" required class="input input-bordered w-full" />
+      </label>
+      <label>
+        Mensaje:
+        <textarea name="message" required class="textarea textarea-bordered w-full"></textarea>
+      </label>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+  </section>
+</BaseLayout>

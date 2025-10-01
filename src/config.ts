@@ -4,3 +4,4 @@
 export const SITE_TITLE = 'Diego Ignacio | Portfolio';
 export const SITE_DESCRIPTION = 'Portafolio de Diego Ignacio Soto, desarrollador full stack web';
 export const GENERATE_SLUG_FROM_TITLE = true
+
