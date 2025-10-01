@@ -1,0 +1,66 @@
+---
+interface Props {
+  tech: string;
+}
+
+const { tech } = Astro.props;
+
+// Mapa de colores usando badges soft de DaisyUI
+const techBadgeTypes: Record<string, string> = {
+  // Frontend
+  "react": "badge-info badge-soft",
+  "vue": "badge-success badge-soft", 
+  "angular": "badge-error badge-soft",
+  "astro": "badge-warning badge-soft",
+  "svelte": "badge-secondary badge-soft",
+  
+  // Styling
+  "tailwindcss": "badge-accent badge-soft",
+  "css": "badge-info badge-soft",
+  "sass": "badge-secondary badge-soft",
+  "daisyui": "badge-success badge-soft",
+  
+  // Languages
+  "javascript": "badge-warning badge-soft",
+  "typescript": "badge-info badge-soft",
+  "python": "badge-primary badge-soft",
+  "java": "badge-error badge-soft",
+  "php": "badge-secondary badge-soft",
+  
+  // Backend
+  "node.js": "badge-success badge-soft",
+  "nodejs": "badge-success badge-soft",
+  "express": "badge-neutral badge-soft",
+  "hono": "badge-warning badge-soft",
+  "nestjs": "badge-error badge-soft",
+  
+  // Databases
+  "postgresql": "badge-primary badge-soft",
+  "mysql": "badge-warning badge-soft",
+  "mongodb": "badge-success badge-soft",
+  "sqlite": "badge-neutral badge-soft",
+  "neon": "badge-accent badge-soft",
+  
+  // Tools
+  "docker": "badge-info badge-soft",
+  "git": "badge-warning badge-soft",
+  "webpack": "badge-info badge-soft",
+  "vite": "badge-secondary badge-soft",
+  "prisma": "badge-ghost badge-soft",
+  
+  // Default
+  "default": "badge-ghost badge-soft"
+};
+
+// Obtener tipo de badge para la tecnología (case insensitive)
+const getBadgeType = (tech: string): string => {
+  const normalizedTech = tech.toLowerCase().replace(/\s+/g, '');
+  return techBadgeTypes[normalizedTech] || techBadgeTypes.default;
+};
+
+const badgeType = getBadgeType(tech);
+---
+
+<span class={`badge ${badgeType} badge-sm`}>
+  {tech}
+</span>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import TechTag from "../../components/TechTag.astro";
 
 export const prerender = true;
 
@@ -29,7 +30,7 @@ const { Content } = await project.render();
       {project.data.tags && (
         <div class="flex flex-wrap gap-2 mb-4">
           {project.data.tags.map((tag) => (
-            <span class="badge badge-primary">{tag}</span>
+            <TechTag tech={tag} />
           ))}
         </div>
       )}

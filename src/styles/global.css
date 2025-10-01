@@ -3,6 +3,14 @@
     themes: forest, night, light;
 };
 
+/* Tech Tags Colors - Asegurar que Tailwind incluya estas clases */
+.bg-blue-500, .bg-green-500, .bg-red-600, .bg-orange-500, .bg-orange-600,
+.bg-cyan-500, .bg-blue-400, .bg-pink-500, .bg-green-400, .bg-yellow-500,
+.bg-blue-600, .bg-blue-700, .bg-red-500, .bg-purple-600, .bg-green-600,
+.bg-gray-700, .bg-orange-400, .bg-blue-800, .bg-orange-600, .bg-green-700,
+.bg-gray-600, .bg-cyan-400, .bg-orange-700, .bg-purple-500, .bg-gray-800,
+.bg-gray-500, .text-white, .text-black { /* Placeholder para safelist */ }
+
 
 /* Estilos personalizados para el contenido Markdown */
 .prose {
