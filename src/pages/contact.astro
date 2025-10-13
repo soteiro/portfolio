@@ -1,23 +1,37 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+// import FeedbackForm from '@components/FeedbackForm.astro';
 ---
 
 <BaseLayout sideBarActiveItemID="contact">
+
   <section class="max-w-xl mx-auto py-8">
     <h1 class="text-3xl font-bold mb-4">Contacto</h1>
-    <form name="contact" method="POST" data-netlify="true" class="flex flex-col gap-4">
+    <form 
+      name="contact" 
+      method="POST" 
+      data-netlify="true" 
+      netlify-honeypot="bot-field"
+      action="/success"
+      class="flex flex-col gap-4"
+    >
       <input type="hidden" name="form-name" value="contact" />
-      <label>
-        Nombre:
+      <p class="hidden">
+        <label>
+          Don't fill this out if you're human: <input name="bot-field" />
+        </label>
+      </p>
+      <label class="flex flex-col gap-2">
+        <span class="font-medium">Nombre:</span>
         <input type="text" name="name" required class="input input-bordered w-full" />
       </label>
-      <label>
-        Email:
+      <label class="flex flex-col gap-2">
+        <span class="font-medium">Email:</span>
         <input type="email" name="email" required class="input input-bordered w-full" />
       </label>
-      <label>
-        Mensaje:
-        <textarea name="message" required class="textarea textarea-bordered w-full"></textarea>
+      <label class="flex flex-col gap-2">
+        <span class="font-medium">Mensaje:</span>
+        <textarea name="message" required rows="6" class="textarea textarea-bordered w-full"></textarea>
       </label>
       <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
