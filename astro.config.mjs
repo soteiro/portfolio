@@ -13,5 +13,5 @@ export default defineConfig({
 
   integrations: [mdx(), sitemap()],
   adapter: netlify(),
-  output: 'hybrid'
+  output: 'static'
 });
