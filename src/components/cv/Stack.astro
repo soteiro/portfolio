@@ -1,0 +1,59 @@
+---
+// Importar los iconos SVG
+import PythonIcon from '../icons/python.svg?raw';
+import JavaScriptIcon from '../icons/javascript.svg?raw';
+import TypeScriptIcon from '../icons/typescript.svg?raw';
+import NodeIcon from '../icons/nodejs.svg?raw';
+import HonoIcon from '../icons/hono.svg?raw';
+import AstroIcon from '../icons/astro-icon-dark.svg?raw';
+import TailwindIcon from '../icons/tailwindcss.svg?raw';
+import HTML5Icon from '../icons/html5.svg?raw';
+import GitIcon from '../icons/git.svg?raw';
+import GitHubIcon from '../icons/github_dark.svg?raw';
+import CloudflareIcon from '../icons/cloudflare.svg?raw';
+import VercelIcon from '../icons/vercel_dark.svg?raw';
+import ESLintIcon from '../icons/eslint-icon-dark.svg?raw';
+import Postgresql from '../icons/postgresql.svg?raw';
+import Neon from '../icons/neon.svg?raw';
+import Postman from '../icons/postman.svg?raw';
+import Supabase from '../icons/supabase.svg?raw';
+import Prettier from '../icons/prettier-icon-dark.svg?raw'
+import Vitest from '../icons/vitest.svg?raw'
+import ViteJs from '../icons/vitejs.svg?raw'
+
+
+// Definir las tecnologías con sus iconos (ordenadas alfabéticamente)
+const technologies = [
+  { name: 'Astro', icon: AstroIcon },
+  { name: 'Cloudflare', icon: CloudflareIcon },
+  { name: 'ESLint', icon: ESLintIcon },
+  { name: 'Git', icon: GitIcon },
+  { name: 'GitHub', icon: GitHubIcon },
+  { name: 'Hono', icon: HonoIcon },
+  { name: 'HTML5', icon: HTML5Icon },
+  { name: 'JavaScript', icon: JavaScriptIcon },
+  { name: 'Neon', icon: Neon },
+  { name: 'Node.js', icon: NodeIcon },
+  { name: 'Postman', icon: Postman },
+  { name: 'PostgreSQL', icon: Postgresql },
+  { name: 'Prettier', icon: Prettier },
+  { name: 'Python', icon: PythonIcon },
+  { name: 'Supabase', icon: Supabase },
+  { name: 'Tailwind CSS', icon: TailwindIcon },
+  { name: 'TypeScript', icon: TypeScriptIcon },
+  { name: 'Vercel', icon: VercelIcon },
+  { name: 'Vitejs', icon: ViteJs },
+  { name: 'Vitest', icon: Vitest },
+];
+
+const styleLi = "flex items-center gap-3 py-2";
+const styleIcon = "w-6 h-6 md:w-8 md:h-8 shrink-0 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:object-contain";
+const styleSpan = "text-base md:text-lg font-medium";
+---
+
+{technologies.map((tech) => (
+  <li class={styleLi}>
+    <div class={styleIcon} set:html={tech.icon} />
+    <span class={styleSpan}>{tech.name}</span>
+  </li>
+))}
