@@ -5,6 +5,7 @@ pubDate: 'Oct 13 2025'
 tags: ["ESP32", "IoT", "Cloudflare", "Hono", "Astro", "React", "TypeScript", "PostgreSQL", "Prisma", "PlatformIO"]
 repoUrl: 'https://github.com/soteiro/iot-temp-2'
 demoUrl: 'https://temply4432.netlify.app'
+heroImage: '/temply.svg'
 ---
 
 ## 🔗 Enlaces
