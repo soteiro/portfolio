@@ -48,10 +48,10 @@ La elección del stack tecnológico fue fundamental para cumplir los objetivos d
 -   **Dashboard Analítico:** Gráficos detallados para analizar las tendencias de temperatura y humedad a lo largo del tiempo.
 -   **Arquitectura Escalable y Eficiente:** Basado en tecnologías serverless para soportar un crecimiento con costos controlados.
 
-## Desafíos y Aprendizajes
+<!-- ## Desafíos y Aprendizajes
 
 *(Esta sección es un marcador de posición para que la completes. Es una de las partes más importantes de un portafolio. Aquí tienes algunas ideas sobre qué escribir):*
 
 *   **Ejemplo 1 (Técnico):** "Uno de los principales desafíos fue asegurar la comunicación entre el ESP32 y el backend en Cloudflare. Implementé un sistema de autenticación con API Key y Secret, y tuve que manejar cuidadosamente los reintentos de conexión en el firmware para evitar la pérdida de datos cuando la red WiFi era inestable. Esto me enseñó sobre la importancia de la resiliencia en sistemas distribuidos."
 
-*   **Ejemplo 2 (Aprendizaje):** "Este proyecto fue mi primera inmersión profunda en arquitecturas serverless. Aprender a gestionar el estado y las conexiones a la base de datos desde un entorno como Cloudflare Workers fue un reto gratificante. Comprendí las ventajas y las limitaciones del cómputo en el borde (edge computing)."
+*   **Ejemplo 2 (Aprendizaje):** "Este proyecto fue mi primera inmersión profunda en arquitecturas serverless. Aprender a gestionar el estado y las conexiones a la base de datos desde un entorno como Cloudflare Workers fue un reto gratificante. Comprendí las ventajas y las limitaciones del cómputo en el borde (edge computing)." -->
