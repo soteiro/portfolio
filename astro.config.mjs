@@ -7,6 +7,8 @@ import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://diegoignaciosoto.tech', // Cambia esto por tu dominio real
+  
   vite:{
     plugins: [tailwindcss()]
   },

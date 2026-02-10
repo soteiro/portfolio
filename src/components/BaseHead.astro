@@ -1,16 +1,61 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import '../styles/global.css';
+import "../styles/global.css";
+import { AUTHOR_NAME, SITE_LOCATION, KEYWORDS } from "../config";
 
 export interface Props {
-	title: string;
-	description: string;
-	image?: string;
-	ogType?: string;
+  title: string;
+  description: string;
+  image?: string;
+  ogType?: string;
+  keywords?: string[];
 }
 
-const { title, description, image = '/social_img.webp', ogType = 'website' } = Astro.props;
+const {
+  title,
+  description,
+  image = "/social_img.webp",
+  ogType = "website",
+  keywords = KEYWORDS,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Schema.org JSON-LD structured data
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: AUTHOR_NAME,
+  jobTitle: "Desarrollador Full Stack & IoT Specialist",
+  description: description,
+  url: Astro.site,
+  image: new URL(image, Astro.url),
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "CL",
+    addressRegion: SITE_LOCATION,
+  },
+  knowsAbout: [
+    "JavaScript",
+    "TypeScript",
+    "Python",
+    "React",
+    "Node.js",
+    "IoT",
+    "MQTT",
+    "ESP32",
+    "Grafana",
+    "InfluxDB",
+    "PostgreSQL",
+    "Full Stack Development",
+    "Web Development",
+  ],
+  sameAs: [
+    "https://github.com/soteiro",
+    "https://linkedin.com/in/diegoignacio",
+  ],
+};
 ---
 
 <!-- Global Metadata -->
@@ -18,11 +63,18 @@ const { title, description, image = '/social_img.webp', ogType = 'website' } = A
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
+<link rel="canonical" href={canonicalURL} />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta name="keywords" content={keywords.join(", ")} />
+<meta name="author" content={AUTHOR_NAME} />
+<meta name="robots" content="index, follow" />
+<meta name="language" content="Spanish" />
+<meta name="geo.region" content="CL" />
+<meta name="geo.placename" content={SITE_LOCATION} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={ogType} />
@@ -30,6 +82,8 @@ const { title, description, image = '/social_img.webp', ogType = 'website' } = A
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:locale" content="es_CL" />
+<meta property="og:site_name" content={AUTHOR_NAME} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -37,3 +91,6 @@ const { title, description, image = '/social_img.webp', ogType = 'website' } = A
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
