@@ -4,24 +4,60 @@ import HorizontalCard from "../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
-
 ---
 
-<BaseLayout title = "Projects" sideBarActiveItemID="projects">
-  <div>
+<BaseLayout title="Projects" sideBarActiveItemID="projects">
+  <div class="animate-fade-in-up">
     <div class="text-3xl w-full font-bold mb-5">Proyectos</div>
   </div>
 
-
-  {
-    projects.map((project) => (
-      <HorizontalCard 
-        title={project.data.title} 
-        description={project.data.description} 
-        image={project.data.heroImage} 
-        href={`/projects/${project.slug}`} 
-        tags={project.data.tags}
-      />
-    ))
-  }
+  <div class="flex flex-col gap-4 animate-fade-in-up delay-200">
+    {
+      projects.map((project) => (
+        <HorizontalCard
+          title={project.data.title}
+          description={project.data.description}
+          image={project.data.heroImage}
+          href={`/projects/${project.slug}`}
+          tags={project.data.tags}
+        />
+      ))
+    }
+  </div>
 </BaseLayout>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .delay-100 {
+    animation-delay: 0.1s;
+  }
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+  .delay-300 {
+    animation-delay: 0.3s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in-up {
+      opacity: 1;
+      animation: none;
+      transform: none;
+    }
+  }
+</style>

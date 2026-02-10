@@ -5,71 +5,71 @@ interface Props {
 
 const { tech } = Astro.props;
 
-// Mapa de colores usando badges soft de DaisyUI
 const techBadgeTypes: Record<string, string> = {
   // Frontend
-  "react": "badge-info badge-soft",
-  "vue": "badge-success badge-soft", 
-  "angular": "badge-error badge-soft",
-  "astro": "badge-warning badge-soft",
-  "svelte": "badge-secondary badge-soft",
-  
+  react: "badge-info",
+  vue: "badge-success",
+  angular: "badge-error",
+  astro: "badge-warning",
+  svelte: "badge-secondary",
+
   // Styling
-  "tailwindcss": "badge-accent badge-soft",
-  "css": "badge-info badge-soft",
-  "sass": "badge-secondary badge-soft",
-  "daisyui": "badge-success badge-soft",
-  
+  tailwindcss: "badge-accent",
+  css: "badge-info",
+  sass: "badge-secondary",
+  daisyui: "badge-success",
+
   // Languages
-  "javascript": "badge-warning badge-soft",
-  "typescript": "badge-info badge-soft",
-  "python": "badge-primary badge-soft",
-  "java": "badge-error badge-soft",
-  "php": "badge-secondary badge-soft",
-  
+  javascript: "badge-warning",
+  typescript: "badge-info",
+  python: "badge-primary",
+  java: "badge-error",
+  php: "badge-secondary",
+
   // Backend
-  "node.js": "badge-success badge-soft",
-  "nodejs": "badge-success badge-soft",
-  "express": "badge-neutral badge-soft",
-  "hono": "badge-warning badge-soft",
-  "nestjs": "badge-error badge-soft",
-  
+  "node.js": "badge-success",
+  nodejs: "badge-success",
+  express: "badge-neutral",
+  hono: "badge-warning",
+  nestjs: "badge-error",
+
   // Databases
-  "postgresql": "badge-primary badge-soft",
-  "mysql": "badge-warning badge-soft",
-  "mongodb": "badge-success badge-soft",
-  "sqlite": "badge-neutral badge-soft",
-  "neon": "badge-accent badge-soft",
-  
+  postgresql: "badge-primary",
+  mysql: "badge-warning",
+  mongodb: "badge-success",
+  sqlite: "badge-neutral",
+  neon: "badge-accent",
+
   // Cloud & Infrastructure
-  "cloudflare": "badge-warning badge-soft",
-  "serverless": "badge-info badge-soft",
-  
+  cloudflare: "badge-warning",
+  serverless: "badge-info",
+
   // IoT & Hardware
-  "esp32": "badge-error badge-soft",
-  "iot": "badge-secondary badge-soft",
-  "platformio": "badge-warning badge-soft",
-  
+  esp32: "badge-error",
+  iot: "badge-secondary",
+  platformio: "badge-warning",
+
   // Tools
-  "docker": "badge-info badge-soft",
-  "git": "badge-warning badge-soft",
-  "webpack": "badge-info badge-soft",
-  "vite": "badge-secondary badge-soft",
-  "prisma": "badge-primary badge-soft",
-  
+  docker: "badge-info",
+  git: "badge-warning",
+  webpack: "badge-info",
+  vite: "badge-secondary",
+  prisma: "badge-primary",
+
   // Default
-  "default": "badge-ghost badge-soft"
+  default: "badge-ghost",
 };
 
 // Obtener tipo de badge para la tecnología (case insensitive)
 const getBadgeType = (tech: string): string => {
-  const normalizedTech = tech.toLowerCase().replace(/\s+/g, '');
+  const normalizedTech = tech.toLowerCase().replace(/\s+/g, "");
   return techBadgeTypes[normalizedTech] || techBadgeTypes.default;
 };
 
 const badgeType = getBadgeType(tech);
 ---
 
-<span class={`badge ${badgeType} badge-sm`}>
+<span
+  class={`badge ${badgeType} badge-sm hover:scale-110 transition-transform duration-200 cursor-default font-semibold shadow-md`}>
   {tech}
 </span>

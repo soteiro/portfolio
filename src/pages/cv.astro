@@ -1,66 +1,305 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/cv/TimeLine.astro";
-import Stack from "@components/cv/Stack.astro";
 ---
 
 <BaseLayout title="Resume" sideBarActiveItemID="cv">
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Perfil</div>
+  <div class="min-h-screen pb-20">
+    <div class="mb-12 animate-fade-in-up">
+      <div class="text-3xl w-full font-bold mb-4 text-primary">Perfil</div>
+      <div class="text-lg leading-relaxed text-base-content/90 text-justify">
+        <p>
+          Desarrollador de software autodidacta con experiencia práctica en
+          Python, JavaScript, Node.js, React, Tailwind y PostgreSQL. Apasionado
+          por el aprendizaje continuo y la innovación tecnológica, he
+          desarrollado diversos proyectos personales que demuestran mi capacidad
+          de autogestión, resolución de problemas y adaptación a nuevos
+          desafíos. Me considero una persona proactiva, responsable y con buenas
+          habilidades de comunicación.
+        </p>
+      </div>
+    </div>
+
+    <div class="mb-8 animate-fade-in-up delay-100">
+      <div class="text-3xl w-full font-bold text-accent">Experiencia</div>
+    </div>
+
+    <div class="time-line-container mb-20 px-2 animate-fade-in-up delay-100">
+      <TimeLineElement
+        title="Ingeniero IoT en Cursor S.A."
+        subtitle="Desde Nov 2025 - Actualidad, Remoto">
+        Principalmente enfocado en la reportería para clientes finales
+        utilizando Grafana. Realizo la instalación y configuración de EMQX e
+        InfluxDB, además del control y monitoreo activo de sensores.
+      </TimeLineElement>
+      <TimeLineElement
+        title="Desarrollador Full Stack en Temply"
+        subtitle="2025, Remoto">
+        Desarrollo de aplicaciones web y sistemas IoT utilizando tecnologías,
+        typescript, Node.js, Hono, Astro, React, Tailwind y PostgreSQL. En estos
+        proyectos he gestionado todo el ciclo de vida del software: análisis,
+        diseño, desarrollo, test y despliegue.
+      </TimeLineElement>
+    </div>
+
+    <div class="mb-8 animate-fade-in-up delay-200">
+      <div class="text-3xl w-full font-bold text-accent">Educación</div>
+    </div>
+
+    <div
+      class="time-line-container grid gap-4 mb-20 px-2 animate-fade-in-up delay-200">
+      <TimeLineElement
+        title="Formación Autodidacta en Desarrollo de Software"
+        subtitle="2023 a la fecha, Cursos online y proyectos personales, Remoto">
+        Aprendizaje continuo en tecnologías como Python, JavaScript, Node.js,
+        React, Tailwind y PostgreSQL, mediante cursos, documentación oficial y
+        desarrollo de proyectos propios.
+      </TimeLineElement>
+      <TimeLineElement
+        title="Ingeniería Civil Electrónica"
+        subtitle="2019 to 2022 en Universidad Austral de Chile, Valdivia, Chile"
+        >Formación sólida en matemáticas avanzadas (Cálculo en varias Variables,
+        Ecuaciones Diferenciales), física y fundamentos de electrónica. Adquirí
+        habilidades analíticas y de resolución de problemas aplicadas a
+        contextos tecnológicos y científicos. Carrera no finalizada.
+      </TimeLineElement>
+    </div>
+
+    <!-- TODO: Add Certifications -->
+
+    <div class="mb-5 animate-fade-in-up delay-300">
+      <div class="text-3xl w-full font-bold text-primary">
+        Stack Tecnológico
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-12 mb-10 mx-4 animate-fade-in-up delay-300">
+      <!-- Lenguajes -->
+      <section>
+        <h3
+          class="text-xl font-bold mb-6 flex items-center gap-3 text-secondary">
+          <span class="w-2 h-8 bg-secondary rounded-full"></span>
+          Lenguajes
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {
+            [
+              {
+                name: "JavaScript",
+                icon: import("../components/icons/javascript.svg?raw"),
+              },
+              {
+                name: "TypeScript",
+                icon: import("../components/icons/typescript.svg?raw"),
+              },
+              {
+                name: "Python",
+                icon: import("../components/icons/python.svg?raw"),
+              },
+              {
+                name: "HTML5",
+                icon: import("../components/icons/html5.svg?raw"),
+              },
+              { name: "CSS3", icon: import("../components/icons/css.svg?raw") },
+            ].map(async (tech) => {
+              const { default: icon } = await tech.icon;
+              return (
+                <div class="group flex flex-col items-center gap-3 p-4 rounded-xl border border-base-300 bg-base-100/50 hover:bg-base-200 hover:border-primary/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-default">
+                  <div
+                    class="w-10 h-10 p-1 flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                    set:html={icon}
+                  />
+                  <span class="text-sm font-semibold text-base-content/90 group-hover:text-primary transition-colors">
+                    {tech.name}
+                  </span>
+                </div>
+              );
+            })
+          }
+        </div>
+      </section>
+
+      <!-- Frontend -->
+      <section>
+        <h3 class="text-xl font-bold mb-6 flex items-center gap-3 text-accent">
+          <span class="w-2 h-8 bg-accent rounded-full"></span>
+          Frontend
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {
+            [
+              {
+                name: "Astro",
+                icon: import("../components/icons/astro-icon-dark.svg?raw"),
+              },
+              {
+                name: "React",
+                icon: import("../components/icons/react.svg?raw"),
+              },
+              {
+                name: "Tailwind CSS",
+                icon: import("../components/icons/tailwindcss.svg?raw"),
+              },
+              {
+                name: "Vite",
+                icon: import("../components/icons/vitejs.svg?raw"),
+              },
+            ].map(async (tech) => {
+              const { default: icon } = await tech.icon;
+              return (
+                <div class="group flex flex-col items-center gap-3 p-4 rounded-xl border border-base-300 bg-base-100/50 hover:bg-base-200 hover:border-accent/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-default">
+                  <div
+                    class="w-10 h-10 p-1 flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                    set:html={icon}
+                  />
+                  <span class="text-sm font-semibold text-base-content/90 group-hover:text-accent transition-colors">
+                    {tech.name}
+                  </span>
+                </div>
+              );
+            })
+          }
+        </div>
+      </section>
+
+      <!-- Backend & DB -->
+      <section>
+        <h3 class="text-xl font-bold mb-6 flex items-center gap-3 text-info">
+          <span class="w-2 h-8 bg-info rounded-full"></span>
+          Backend & Servicios
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {
+            [
+              {
+                name: "Node.js",
+                icon: import("../components/icons/nodejs.svg?raw"),
+              },
+              {
+                name: "Hono",
+                icon: import("../components/icons/hono.svg?raw"),
+              },
+              {
+                name: "PostgreSQL",
+                icon: import("../components/icons/postgresql.svg?raw"),
+              },
+              {
+                name: "Supabase",
+                icon: import("../components/icons/supabase.svg?raw"),
+              },
+              {
+                name: "Neon",
+                icon: import("../components/icons/neon.svg?raw"),
+              },
+              {
+                name: "MQTT",
+                icon: import("../components/icons/mqtt.svg?raw"),
+              },
+            ].map(async (tech) => {
+              const { default: icon } = await tech.icon;
+              return (
+                <div class="group flex flex-col items-center gap-3 p-4 rounded-xl border border-base-300 bg-base-100/50 hover:bg-base-200 hover:border-info/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-default">
+                  <div
+                    class="w-10 h-10 p-1 flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                    set:html={icon}
+                  />
+                  <span class="text-sm font-semibold text-base-content/90 group-hover:text-info transition-colors">
+                    {tech.name}
+                  </span>
+                </div>
+              );
+            })
+          }
+        </div>
+      </section>
+
+      <!-- Tools -->
+      <section>
+        <h3 class="text-xl font-bold mb-6 flex items-center gap-3 text-warning">
+          <span class="w-2 h-8 bg-warning rounded-full"></span>
+          Herramientas & DevOps
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {
+            [
+              { name: "Git", icon: import("../components/icons/git.svg?raw") },
+              {
+                name: "GitHub",
+                icon: import("../components/icons/github_dark.svg?raw"),
+              },
+              {
+                name: "Vercel",
+                icon: import("../components/icons/vercel_dark.svg?raw"),
+              },
+              {
+                name: "Cloudflare",
+                icon: import("../components/icons/cloudflare.svg?raw"),
+              },
+              {
+                name: "Digital Ocean",
+                icon: import("../components/icons/digitalocean.svg?raw"),
+              },
+              {
+                name: "Linux",
+                icon: import("../components/icons/linux.svg?raw"),
+              },
+              {
+                name: "Postman",
+                icon: import("../components/icons/postman.svg?raw"),
+              },
+            ].map(async (tech) => {
+              const { default: icon } = await tech.icon;
+              return (
+                <div class="group flex flex-col items-center gap-3 p-4 rounded-xl border border-base-300 bg-base-100/50 hover:bg-base-200 hover:border-warning/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-default">
+                  <div
+                    class="w-10 h-10 p-1 flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                    set:html={icon}
+                  />
+                  <span class="text-sm font-semibold text-base-content/90 group-hover:text-warning transition-colors">
+                    {tech.name}
+                  </span>
+                </div>
+              );
+            })
+          }
+        </div>
+      </section>
+    </div>
   </div>
-
-  <div class="mb-10 text-justify">
-    <p>
-      Desarrollador de software autodidacta con experiencia práctica en Python,
-      JavaScript, Node.js, React, Tailwind y PostgreSQL. Apasionado por el
-      aprendizaje continuo y la innovación tecnológica, he desarrollado diversos
-      proyectos personales que demuestran mi capacidad de autogestión,
-      resolución de problemas y adaptación a nuevos desafíos. Me considero una
-      persona proactiva, responsable y con buenas habilidades de comunicación.
-    </p>
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Educación</div>
-  </div>
-
-  <div class="time-line-container grid gap-4 mb-10">
-    <TimeLineElement
-      title="Formación Autodidacta en Desarrollo de Software"
-      subtitle="2023 a la fecha, Cursos online y proyectos personales, Remoto">
-      Aprendizaje continuo en tecnologías como Python, JavaScript, Node.js,
-      React, Tailwind y PostgreSQL, mediante cursos, documentación oficial y
-      desarrollo de proyectos propios.
-    </TimeLineElement>
-    <TimeLineElement
-      title="Ingeniería Civil Electrónica"
-      subtitle="2019 to 2022 en Universidad Austral de Chile, Valdivia, Chile"
-    >Formación sólida en matemáticas avanzadas (Cálculo en varias Variables, Ecuaciones Diferenciales), física y fundamentos de electrónica. Adquirí habilidades analíticas y de resolución de problemas aplicadas a contextos tecnológicos y científicos. Carrera no finalizada.
-  </TimeLineElement>
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Experiencia</div>
-  </div>
-
-  <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="Desarrollador Full Stack en Temply"
-      subtitle="2025, Remoto"
-    >
-      Desarrollo de aplicaciones web y sistemas IoT utilizando tecnologías, typescript, Node.js, Hono, Astro, React, Tailwind y PostgreSQL. En estos
-      proyectos he gestionado todo el ciclo de vida del software: análisis,
-      diseño, desarrollo, test y despliegue.
-    </TimeLineElement>
-  </div>
-
-  <!-- TODO: Add Certifications -->
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Stack</div>
-  </div>
-
-  <ul class="list-disc md:columns-5 columns-2 mx-6">
-  <Stack />
-  </ul>
 </BaseLayout>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .delay-100 {
+    animation-delay: 0.1s;
+  }
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+  .delay-300 {
+    animation-delay: 0.3s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in-up {
+      opacity: 1;
+      animation: none;
+      transform: none;
+    }
+  }
+</style>

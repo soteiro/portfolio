@@ -2,15 +2,28 @@
 const { title, subtitle } = Astro.props;
 ---
 
-<div class="flex">
-  <div class="education__time">
-    <span class="w-4 h-4 bg-primary block rounded-full mt-1"></span>
-    <span class="education__line bg-primary block h-full w-[2px] translate-x-[7px]"></span>
+<div class="flex pb-8 group relative">
+  <!-- Línea vertical conectora -->
+  <div class="education__time relative w-4 shrink-0">
+    <span
+      class="education__line bg-base-300 block h-full w-[2px] absolute left-1/2 -translate-x-1/2 top-2"
+    ></span>
+    <span
+      class="w-4 h-4 bg-primary block rounded-full mt-1 relative z-10 border-2 border-base-100 ring-2 ring-primary/30 group-hover:ring-primary/60 transition-all duration-300 scale-100 group-hover:scale-110"
+    ></span>
   </div>
-  <div class="experience__data bd-grid px-5">
-    <h3 class="font-semibold mb-1">{title}</h3>
-    <span class="font-light text-sm">{subtitle}</span>
-    <p class="my-2 text-justify">
+
+  <div
+    class="experience__data px-6 py-2 transition-all duration-300 rounded-xl hover:bg-base-200/50 w-full ml-2">
+    <h3
+      class="font-bold text-xl text-primary mb-1 group-hover:translate-x-1 transition-transform duration-300">
+      {title}
+    </h3>
+    <span class="font-medium text-sm text-secondary block mb-3 opacity-90"
+      >{subtitle}</span
+    >
+    <p
+      class="my-2 text-justify text-base-content/80 leading-relaxed font-light">
       <slot />
     </p>
   </div>

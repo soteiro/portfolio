@@ -1,43 +1,152 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
+import TechTag from "../components/TechTag.astro";
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
+
+const last_projects = projects.slice(0, 3);
+
+const socialLinks = [
+  {
+    name: "GitHub",
+    url: "https://github.com/diegoignacio",
+    icon: "i-mdi-github",
+  },
+  {
+    name: "LinkedIn",
+    url: "https://linkedin.com/in/diegoignacio",
+    icon: "i-mdi-linkedin",
+  },
+  {
+    name: "Email",
+    url: "mailto:contact@diegoignacio.dev",
+    icon: "i-mdi-email",
+  },
+];
+
+const skills = [
+  "JavaScript",
+  "Python",
+  "Node.js",
+  "React",
+  "PostgreSQL",
+  "IoT",
+  "ESP32",
+  "Docker",
+  "Git",
+];
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <section class="pb-12 mt-5">
-    <div class="text-xl py-1">Hola 👋</div>
-    <div class="text-5xl font-bold">Soy Diego Ignacio</div>
-    <div class="text-3xl py-3 font-bold">Desarrollador Full Stack</div>
-    <div class="py-2">
-      <text class="text-lg">
-        Soy un desarrollador web con experiencia en tecnologías como JavaScript, Python, Node.js, React, y bases de datos PostgreSQL. Me apasiona crear soluciones innovadoras y eficientes que impulsen el éxito de los proyectos en los que trabajo.
-      </text>
+  <div class="pb-12 mt-5 animate-fade-in-up">
+    <div
+      class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
+      <div class="avatar lg:hidden">
+        <div
+          class="w-48 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 shadow-2xl hover:scale-105 transition-transform duration-300 ease-in-out">
+          <img src="/profile.webp" alt="Diego Ignacio" />
+        </div>
+      </div>
+      <div class="text-center md:text-left max-w-lg">
+        <div class="text-xl py-1 opacity-80">Hola 👋, soy</div>
+        <h1
+          class="text-5xl font-extrabold bg-gradient-to-r from-secondary via-accent to-primary bg-clip-text text-transparent mb-2">
+          Diego Ignacio
+        </h1>
+        <h2 class="text-3xl py-1 font-bold text-primary">
+          Desarrollador Full Stack & IoT Specialist
+        </h2>
+        <div class="py-4 text-lg text-base-content/80 leading-relaxed">
+          Más que código, entrego soluciones. Como Ingeniero Full Stack con
+          especialización en IoT, diseño arquitecturas escalables que conectan
+          aplicaciones web modernas con el mundo físico. Me enfoco en crear
+          software robusto, mantenible y de alto rendimiento que resuelve
+          problemas reales de negocio.
+        </div>
+        <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-2">
+          <a href="/cv" class="btn btn-primary btn-sm">Descargar CV</a>
+          <a
+            href="https://linkedin.com/in/diegoignacio"
+            target="_blank"
+            class="btn btn-outline btn-sm">LinkedIn</a
+          >
+          <a
+            href="mailto:contact@diegoignacio.dev"
+            class="btn btn-outline btn-sm">Contactar</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <section class="mb-12 animate-fade-in-up delay-200">
+    <h3 class="text-2xl font-bold mb-4 text-accent">Habilidades Técnicas</h3>
+    <div class="flex flex-wrap gap-3">
+      {skills.map((skill) => <TechTag tech={skill} />)}
     </div>
   </section>
 
-  <section>
-  <div>
-    <div class="text-3xl w-full font-bold mb-2">Últimos Proyectos {"</>"}</div>
-  </div>
-  <div class="divider my-0"></div>
-  <div class="flex flex-col gap-6 mt-6 mb-6">
-  {
-    projects.map((project) => (
-      <HorizontalCard 
-        title={project.data.title} 
-        description={project.data.description} 
-        image={project.data.heroImage} 
-        href={`/projects/${project.slug}`} 
-        tags={project.data.tags}
-      />
-    ))
-  }
-  </div>
-  <div class="divider my-0"></div>
+  <div class="divider"></div>
 
+  <section class="animate-fade-in-up delay-300">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-3xl font-bold text-accent">Últimos Proyectos {"</>"}</h2>
+      <a href="/projects" class="btn btn-ghost btn-sm">Ver todos →</a>
+    </div>
+
+    <div class="flex flex-col gap-6">
+      {
+        last_projects.map((project) => (
+          <HorizontalCard
+            title={project.data.title}
+            description={project.data.description}
+            image={project.data.heroImage}
+            href={`/projects/${project.slug}`}
+            tags={project.data.tags}
+          />
+        ))
+      }
+    </div>
   </section>
-  
 </BaseLayout>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    opacity: 0; /* Start hidden to avoid flicker before animation starts */
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .delay-100 {
+    animation-delay: 0.1s;
+  }
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+  .delay-300 {
+    animation-delay: 0.3s;
+  }
+
+  /* Prefer reduced motion: disable animation */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in-up {
+      opacity: 1;
+      animation: none;
+      transform: none;
+    }
+  }
+</style>
