@@ -1,0 +1,312 @@
+---
+/**
+ * CursorOrbs - Interactive floating orbs that follow the mouse cursor.
+ * Renders a canvas with glowing, colorful orbs that lazily trail the pointer.
+ */
+---
+
+<div class="cursor-orbs-wrapper" id="cursor-orbs-wrapper">
+  <canvas id="cursor-orbs-canvas"></canvas>
+</div>
+
+<style>
+  .cursor-orbs-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #cursor-orbs-canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+</style>
+
+<script>
+  // Track animation frame ID globally for cleanup
+  let _orbsAnimationId: number | null = null;
+
+  function initCursorOrbs() {
+    // Clean up previous animation if any
+    if (_orbsAnimationId !== null) {
+      cancelAnimationFrame(_orbsAnimationId);
+      _orbsAnimationId = null;
+    }
+
+    const canvas = document.getElementById(
+      "cursor-orbs-canvas",
+    ) as HTMLCanvasElement | null;
+    const wrapper = document.getElementById(
+      "cursor-orbs-wrapper",
+    ) as HTMLDivElement | null;
+    if (!canvas || !wrapper) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // ---- Configuration ----
+    const ORB_COUNT = 8;
+    const PARTICLE_COUNT = 40;
+    const EASE = 0.02;
+
+    const ORB_COLORS = [
+      { r: 101, g: 192, b: 255 },
+      { r: 255, g: 113, b: 206 },
+      { r: 168, g: 130, b: 255 },
+      { r: 64, g: 224, b: 208 },
+      { r: 255, g: 183, b: 77 },
+      { r: 129, g: 230, b: 138 },
+    ];
+
+    interface Orb {
+      x: number;
+      y: number;
+      targetX: number;
+      targetY: number;
+      radius: number;
+      color: { r: number; g: number; b: number };
+      ease: number;
+      phase: number;
+      phaseSpeed: number;
+      orbitRadius: number;
+      orbitAngle: number;
+    }
+
+    interface Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      life: number;
+      maxLife: number;
+      radius: number;
+      color: { r: number; g: number; b: number };
+    }
+
+    let mouse = { x: 0, y: 0, inside: false };
+    let centerX = 0;
+    let centerY = 0;
+    let orbs: Orb[] = [];
+    let particles: Particle[] = [];
+
+    function resize() {
+      const rect = wrapper!.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas!.width = rect.width * dpr;
+      canvas!.height = rect.height * dpr;
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+      centerX = rect.width / 2;
+      centerY = rect.height / 2;
+    }
+
+    function createOrbs() {
+      orbs = [];
+      for (let i = 0; i < ORB_COUNT; i++) {
+        const angle = (Math.PI * 2 * i) / ORB_COUNT;
+        const dist = 60 + Math.random() * 100;
+        orbs.push({
+          x: centerX + Math.cos(angle) * dist,
+          y: centerY + Math.sin(angle) * dist,
+          targetX: centerX,
+          targetY: centerY,
+          radius: 12 + Math.random() * 18,
+          color: ORB_COLORS[i % ORB_COLORS.length],
+          ease: EASE + Math.random() * 0.03,
+          phase: Math.random() * Math.PI * 2,
+          phaseSpeed: 0.004 + Math.random() * 0.006,
+          orbitRadius: dist,
+          orbitAngle: angle,
+        });
+      }
+    }
+
+    function spawnParticle(
+      x: number,
+      y: number,
+      color: { r: number; g: number; b: number },
+    ) {
+      if (particles.length > PARTICLE_COUNT) return;
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 0.3 + Math.random() * 0.8;
+      particles.push({
+        x,
+        y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life: 1,
+        maxLife: 40 + Math.random() * 40,
+        radius: 1.5 + Math.random() * 2.5,
+        color,
+      });
+    }
+
+    function update() {
+      const rect = wrapper!.getBoundingClientRect();
+      const w = rect.width;
+      const h = rect.height;
+
+      let focalX: number, focalY: number;
+      if (mouse.inside) {
+        focalX = mouse.x;
+        focalY = mouse.y;
+      } else {
+        const t = performance.now() / 3000;
+        focalX = centerX + Math.sin(t) * 30;
+        focalY = centerY + Math.cos(t * 0.7) * 20;
+      }
+
+      for (const orb of orbs) {
+        orb.phase += orb.phaseSpeed;
+        const ox = Math.cos(orb.orbitAngle + orb.phase) * orb.orbitRadius;
+        const oy = Math.sin(orb.orbitAngle + orb.phase) * orb.orbitRadius;
+        orb.targetX = focalX + ox;
+        orb.targetY = focalY + oy;
+        orb.x += (orb.targetX - orb.x) * orb.ease;
+        orb.y += (orb.targetY - orb.y) * orb.ease;
+        orb.x = Math.max(orb.radius, Math.min(w - orb.radius, orb.x));
+        orb.y = Math.max(orb.radius, Math.min(h - orb.radius, orb.y));
+        if (Math.random() < 0.15) spawnParticle(orb.x, orb.y, orb.color);
+      }
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life++;
+        if (p.life > p.maxLife) particles.splice(i, 1);
+      }
+    }
+
+    function draw() {
+      const rect = wrapper!.getBoundingClientRect();
+      const w = rect.width;
+      const h = rect.height;
+      ctx!.clearRect(0, 0, w, h);
+
+      ctx!.lineWidth = 1;
+      for (let i = 0; i < orbs.length; i++) {
+        for (let j = i + 1; j < orbs.length; j++) {
+          const dx = orbs[i].x - orbs[j].x;
+          const dy = orbs[i].y - orbs[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 300) {
+            const alpha = (1 - dist / 300) * 0.15;
+            ctx!.strokeStyle = `rgba(${orbs[i].color.r}, ${orbs[i].color.g}, ${orbs[i].color.b}, ${alpha})`;
+            ctx!.beginPath();
+            ctx!.moveTo(orbs[i].x, orbs[i].y);
+            ctx!.lineTo(orbs[j].x, orbs[j].y);
+            ctx!.stroke();
+          }
+        }
+      }
+
+      for (const p of particles) {
+        const progress = p.life / p.maxLife;
+        const alpha = 1 - progress;
+        ctx!.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${alpha * 0.5})`;
+        ctx!.beginPath();
+        ctx!.arc(p.x, p.y, p.radius * (1 - progress * 0.5), 0, Math.PI * 2);
+        ctx!.fill();
+      }
+
+      for (const orb of orbs) {
+        const { r, g, b } = orb.color;
+        const pulse = 0.85 + Math.sin(orb.phase * 2) * 0.15;
+        const currentRadius = orb.radius * pulse;
+
+        const gradient = ctx!.createRadialGradient(
+          orb.x,
+          orb.y,
+          currentRadius * 0.1,
+          orb.x,
+          orb.y,
+          currentRadius * 2.5,
+        );
+        gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.25)`);
+        gradient.addColorStop(0.5, `rgba(${r}, ${g}, ${b}, 0.06)`);
+        gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+        ctx!.fillStyle = gradient;
+        ctx!.beginPath();
+        ctx!.arc(orb.x, orb.y, currentRadius * 2.5, 0, Math.PI * 2);
+        ctx!.fill();
+
+        const innerGrad = ctx!.createRadialGradient(
+          orb.x,
+          orb.y,
+          0,
+          orb.x,
+          orb.y,
+          currentRadius,
+        );
+        innerGrad.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.6)`);
+        innerGrad.addColorStop(0.6, `rgba(${r}, ${g}, ${b}, 0.2)`);
+        innerGrad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+        ctx!.fillStyle = innerGrad;
+        ctx!.beginPath();
+        ctx!.arc(orb.x, orb.y, currentRadius, 0, Math.PI * 2);
+        ctx!.fill();
+      }
+    }
+
+    function loop() {
+      update();
+      draw();
+      _orbsAnimationId = requestAnimationFrame(loop);
+    }
+
+    wrapper.addEventListener("mousemove", (e) => {
+      const rect = wrapper!.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      mouse.inside = true;
+    });
+    wrapper.addEventListener("mouseleave", () => {
+      mouse.inside = false;
+    });
+    wrapper.addEventListener(
+      "touchmove",
+      (e) => {
+        const rect = wrapper!.getBoundingClientRect();
+        const touch = e.touches[0];
+        mouse.x = touch.clientX - rect.left;
+        mouse.y = touch.clientY - rect.top;
+        mouse.inside = true;
+      },
+      { passive: true },
+    );
+    wrapper.addEventListener("touchend", () => {
+      mouse.inside = false;
+    });
+    window.addEventListener("resize", () => {
+      resize();
+    });
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    resize();
+    createOrbs();
+
+    if (!prefersReducedMotion) {
+      loop();
+    } else {
+      update();
+      draw();
+    }
+  }
+
+  // Initialize on every page load (including View Transitions)
+  document.addEventListener("astro:page-load", initCursorOrbs);
+
+  // Clean up animation when navigating away
+  document.addEventListener("astro:before-swap", () => {
+    if (_orbsAnimationId !== null) {
+      cancelAnimationFrame(_orbsAnimationId);
+      _orbsAnimationId = null;
+    }
+  });
+</script>

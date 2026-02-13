@@ -4,7 +4,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
-import '@styles/global.css';
+import "@styles/global.css";
 
 import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 
@@ -22,21 +22,30 @@ const {
 <html lang="es" data-theme="night">
   <head>
     <!-- <link rel="icon" type="image/x-icon" href="/favicon.png"> -->
-    <BaseHead title={title} description={description} image={image} , ogType={ogType} />
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      ,
+      ogType={ogType}
+    />
     <ClientRouter />
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LYKDR2WYQQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LYKDR2WYQQ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  gtag('config', 'G-LYKDR2WYQQ');
-</script>
+      gtag("config", "G-LYKDR2WYQQ");
+    </script>
   </head>
   <body>
     <div class="bg-base-100 drawer lg:drawer-open">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content bg-base-100">
+      <div class="drawer-content bg-base-100 main-content-bg">
         <Header title={SITE_TITLE} />
         <div class="md:flex md:justify-center">
           <main class="p-6 pt-10 lg:max-w-[900px] max-w-[100vw]">
