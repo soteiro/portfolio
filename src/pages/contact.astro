@@ -6,14 +6,16 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 <BaseLayout sideBarActiveItemID="contact">
   <section class="max-w-xl mx-auto py-8">
     <div class="animate-fade-in-up">
-      <h1 class="text-3xl font-bold mb-4">Contacto</h1>
+      <h1 class="text-3xl font-bold mb-6 gradient-text section-heading">
+        Contacto
+      </h1>
       <form
         name="contact"
         method="POST"
         data-netlify="true"
         netlify-honeypot="bot-field"
         action="/success"
-        class="flex flex-col gap-4">
+        class="flex flex-col gap-5 mt-4">
         <input type="hidden" name="form-name" value="contact" />
         <p class="hidden">
           <label>
@@ -21,33 +23,34 @@ import BaseLayout from "@layouts/BaseLayout.astro";
           </label>
         </p>
         <label class="flex flex-col gap-2">
-          <span class="font-medium">Nombre:</span>
+          <span class="font-medium text-base-content/80">Nombre:</span>
           <input
             type="text"
             name="name"
             required
-            class="input input-bordered w-full"
+            class="contact-input input input-bordered w-full"
           />
         </label>
         <label class="flex flex-col gap-2">
-          <span class="font-medium">Email:</span>
+          <span class="font-medium text-base-content/80">Email:</span>
           <input
             type="email"
             name="email"
             required
-            class="input input-bordered w-full"
+            class="contact-input input input-bordered w-full"
           />
         </label>
         <label class="flex flex-col gap-2">
-          <span class="font-medium">Mensaje:</span>
+          <span class="font-medium text-base-content/80">Mensaje:</span>
           <textarea
             name="message"
             required
             rows="6"
-            class="textarea textarea-bordered w-full"></textarea>
+            class="contact-input textarea textarea-bordered w-full"></textarea>
         </label>
-        <button type="submit" class="btn btn-primary w-full sm:w-auto"
-          >Enviar</button
+        <button
+          type="submit"
+          class="btn-gradient btn w-full sm:w-auto font-semibold">Enviar</button
         >
       </form>
     </div>
@@ -69,6 +72,30 @@ import BaseLayout from "@layouts/BaseLayout.astro";
   .animate-fade-in-up {
     opacity: 0;
     animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .contact-input {
+    transition: all 0.3s ease;
+    border-color: rgba(101, 192, 255, 0.1);
+  }
+  .contact-input:focus {
+    border-color: rgba(101, 192, 255, 0.4);
+    box-shadow:
+      0 0 0 3px rgba(101, 192, 255, 0.1),
+      0 0 20px rgba(101, 192, 255, 0.05);
+    outline: none;
+  }
+
+  .btn-gradient {
+    background: linear-gradient(135deg, #65c0ff, #a882ff);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  .btn-gradient:hover {
+    background: linear-gradient(135deg, #4db0f0, #9370e8);
+    box-shadow: 0 4px 20px rgba(101, 192, 255, 0.3);
+    transform: translateY(-1px);
   }
 
   /* Prefer reduced motion: disable animation */

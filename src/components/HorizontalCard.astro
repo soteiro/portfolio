@@ -10,24 +10,39 @@ interface props {
 }
 const { title, description, image, href, tags } = Astro.props;
 ---
+
 <article>
-  <a href={href} class="card lg:card-side bg-base-100 shadow-2xl hover:shadow-2xl transition-shadow duration-300 border border-base-300 hover:border-base-200 hover:scale-[1.01] transform-gpu">
-    <figure>
-      <img src={image} alt={title} class="w-full h-48 object-cover lg:h-auto lg:w-48" />
+  <a
+    href={href}
+    class="project-card card lg:card-side bg-base-100 glow-border shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01] transform-gpu overflow-hidden">
+    <figure class="relative overflow-hidden">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-48 object-cover lg:h-auto lg:w-48 transition-transform duration-500 hover:scale-105"
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-base-100/60 to-transparent lg:bg-gradient-to-r">
+      </div>
     </figure>
     <div class="card-body">
       <h2 class="card-title text-2xl font-bold">{title}</h2>
       <p class="text-base-content/70">{description}</p>
       <div class="card-actions justify-end flex-wrap gap-2">
-        {
-          tags && tags.slice(0, 5).map((tag) => (
-            <TechTag tech={tag} />
-          ))
-        }
+        {tags && tags.slice(0, 5).map((tag) => <TechTag tech={tag} />)}
       </div>
     </div>
-    <div class="absolute top-4 right-4 w-7 h-7 opacity-70 hover:opacity-100 transition-opacity duration-300">
-      <img class="w-full h-full object-contain" src="/link.svg" alt="">
+    <div
+      class="absolute top-4 right-4 w-7 h-7 opacity-50 hover:opacity-100 transition-opacity duration-300">
+      <img class="w-full h-full object-contain" src="/link.svg" alt="" />
     </div>
   </a>
 </article>
+
+<style>
+  .project-card:hover {
+    box-shadow:
+      0 8px 32px rgba(101, 192, 255, 0.1),
+      0 0 0 1px rgba(101, 192, 255, 0.15);
+  }
+</style>

@@ -1,16 +1,39 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin 'daisyui' {
-    themes: forest, night, light;
-};
+  themes: forest, night, light;
+}
 
 /* Tech Tags Colors - Asegurar que Tailwind incluya estas clases */
-.bg-blue-500, .bg-green-500, .bg-red-600, .bg-orange-500, .bg-orange-600,
-.bg-cyan-500, .bg-blue-400, .bg-pink-500, .bg-green-400, .bg-yellow-500,
-.bg-blue-600, .bg-blue-700, .bg-red-500, .bg-purple-600, .bg-green-600,
-.bg-gray-700, .bg-orange-400, .bg-blue-800, .bg-orange-600, .bg-green-700,
-.bg-gray-600, .bg-cyan-400, .bg-orange-700, .bg-purple-500, .bg-gray-800,
-.bg-gray-500, .text-white, .text-black { /* Placeholder para safelist */ }
-
+.bg-blue-500,
+.bg-green-500,
+.bg-red-600,
+.bg-orange-500,
+.bg-orange-600,
+.bg-cyan-500,
+.bg-blue-400,
+.bg-pink-500,
+.bg-green-400,
+.bg-yellow-500,
+.bg-blue-600,
+.bg-blue-700,
+.bg-red-500,
+.bg-purple-600,
+.bg-green-600,
+.bg-gray-700,
+.bg-orange-400,
+.bg-blue-800,
+.bg-orange-600,
+.bg-green-700,
+.bg-gray-600,
+.bg-cyan-400,
+.bg-orange-700,
+.bg-purple-500,
+.bg-gray-800,
+.bg-gray-500,
+.text-white,
+.text-black {
+  /* Placeholder para safelist */
+}
 
 /* Estilos personalizados para el contenido Markdown */
 .prose {
@@ -47,4 +70,113 @@
 
 .prose code {
   @apply bg-base-200 text-base-content px-1 py-0.5 rounded text-sm;
+}
+
+/* ===== GLOBAL ENHANCEMENTS ===== */
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar — dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #65c0ff44, #a882ff44);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #65c0ff88, #a882ff88);
+}
+
+/* Reusable: Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #65c0ff, #a882ff, #ff71ce);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Reusable: Glass panel */
+.glass-panel {
+  background: rgba(15, 20, 35, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(101, 192, 255, 0.08);
+}
+
+/* Reusable: Glow border on hover */
+.glow-border {
+  position: relative;
+  border: 1px solid rgba(101, 192, 255, 0.1);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.glow-border:hover {
+  border-color: rgba(101, 192, 255, 0.25);
+  box-shadow:
+    0 0 20px rgba(101, 192, 255, 0.08),
+    0 0 40px rgba(168, 130, 255, 0.05);
+}
+
+/* Gradient divider */
+.gradient-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(101, 192, 255, 0.3),
+    rgba(168, 130, 255, 0.3),
+    transparent
+  );
+  border: none;
+  margin: 2rem 0;
+}
+
+/* Section heading accent underline */
+.section-heading {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+.section-heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #65c0ff, #a882ff);
+  border-radius: 2px;
+}
+
+/* Global smooth transitions for interactive elements */
+a,
+button,
+.btn,
+.card,
+input,
+textarea {
+  transition: all 0.25s ease;
+}
+
+/* Main content subtle gradient background */
+.main-content-bg {
+  background:
+    radial-gradient(
+      ellipse at 20% 0%,
+      rgba(101, 192, 255, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 100%,
+      rgba(168, 130, 255, 0.03) 0%,
+      transparent 50%
+    );
 }
